@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace ConversorDeMoedas
 {
-    public partial class Form1 : Form
+    public partial class FrmCotacaoDolar : Form
     {
-        public Form1()
+        public FrmCotacaoDolar()
         {
             InitializeComponent();
+        }
+
+        private void FrmCotacaoDolar_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

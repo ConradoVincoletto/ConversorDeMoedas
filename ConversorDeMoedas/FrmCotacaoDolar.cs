@@ -21,5 +21,10 @@ namespace ConversorDeMoedas
         {
 
         }
+
+        private void btn_pesquisar_Click(object sender, EventArgs e)
+        {
+            string strURL = "https://api.hgbrasil.com/finance?array_limit=1&fields=only_results,USD&key=733fd8ea";
+        }
     }
 }

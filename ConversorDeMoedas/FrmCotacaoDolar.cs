@@ -29,7 +29,12 @@ namespace ConversorDeMoedas
 
             using (HttpClient client = new HttpClient())
             {
-                
+                var response = client.GetAsync(strURL).Result;
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = response.Content.ReadAsStringAsync().Result;
+                }
             }
         }
     }

@@ -55,6 +55,7 @@
     <Compile Include="FrmCotacaoDolar.Designer.cs">
       <DependentUpon>FrmCotacaoDolar.cs</DependentUpon>
     </Compile>
+    <Compile Include="MoedaCorrente.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmCotacaoDolar.resx">

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -34,7 +35,11 @@ namespace ConversorDeMoedas
                 if (response.IsSuccessStatusCode)
                 {
                     var result = response.Content.ReadAsStringAsync().Result;
+
+                    MercadoFinanceiro mf = JsonConvert.DeserializeObject<MercadoFinanceiro>(result); 
                 }
+
+                
             }
         }
     }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -30,16 +31,30 @@ namespace ConversorDeMoedas
 
             using (HttpClient client = new HttpClient())
             {
-                var response = client.GetAsync(strURL).Result;
-
-                if (response.IsSuccessStatusCode)
+                try
                 {
-                    var result = response.Content.ReadAsStringAsync().Result;
-
-                    MercadoFinanceiro mf = JsonConvert.DeserializeObject<MercadoFinanceiro>(result); 
+                    var response = client.GetAsync(strURL).Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var result = response.Content.ReadAsStringAsync().Result;
+                        MercadoFinanceiro mf = JsonConvert.DeserializeObject<MercadoFinanceiro>(result);
+                        LblMst_Compra.Text = string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", mf.Moeda.Compra);
+                        LblMst_Venda.Text = string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:C}", mf.Moeda.Venda);
+                        LblMst_Variacao.Text = string.Format(CultureInfo.GetCultureInfo("pt-BR"), "{0:P}", mf.Moeda.Variacao / 100);
+                    }
+                    else
+                    {
+                        LblMst_Compra.Text = " _ ";
+                        LblMst_Venda.Text = " _ ";
+                        LblMst_Variacao.Text = " _ ";
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
                 }
 
-                
+
             }
         }
     }
